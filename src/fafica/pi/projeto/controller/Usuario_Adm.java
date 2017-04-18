@@ -26,7 +26,7 @@ public class Usuario_Adm extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-			System.out.println("Chamando doGet");
+			System.out.println("Chamando doGet"); 
 	}
 
 	

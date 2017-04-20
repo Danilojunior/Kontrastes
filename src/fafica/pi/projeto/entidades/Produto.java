@@ -5,6 +5,7 @@ public class Produto {
 	private String nome;
 	private double preco;
 	
+	
 	public Integer getId_produto() {
 		return id_produto;
 	}

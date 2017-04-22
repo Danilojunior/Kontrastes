@@ -1,19 +1,20 @@
 package fafica.pi.projeto.teste;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import fafica.pi.projeto.entidades.Cliente;
 import fafica.pi.projeto.jdbc.ClienteDAO;
 
-public class TesteUsuarioDAO {
+public class TesteClienteDAO {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	     // testeCadastrar();
-		//testeAlterar();
-		testeDeletar();
-		
+	      //testeCadastrar();
+		testeAlterar();
+		//testeDeletar();
 		//testarListarTodos();
 		
 	}
@@ -21,9 +22,9 @@ public class TesteUsuarioDAO {
 	private static void testeCadastrar() {
 		Cliente cliente= new Cliente();
 		
-		cliente.setNome("Ivan");
-		cliente.setLogin("ii987");
-		cliente.setSenha("1987");
+		cliente.setNome("Rafinha");
+		cliente.setLogin("RafaRafa");
+		cliente.setSenha("98746567");
 		
 		ClienteDAO usu = new ClienteDAO();
 		
@@ -33,8 +34,8 @@ public class TesteUsuarioDAO {
 	private static void testeAlterar(){
 		
 		Cliente cliente= new Cliente();
-		cliente.setId_cliente(1);
-		cliente.setNome("Rafa");
+		cliente.setId_cliente(2);
+		cliente.setNome("Matheus");
 		cliente.setLogin("Rafinha");
 		cliente.setSenha("1234");
 		
@@ -44,7 +45,7 @@ public class TesteUsuarioDAO {
 	}
 	private static void testeDeletar(){
 		Cliente cliente= new Cliente();
-		cliente.setId_cliente(15);
+		cliente.setId_cliente(4);
 		
 		ClienteDAO usu = new ClienteDAO();
 		usu.excluir(cliente);
@@ -58,5 +59,8 @@ public class TesteUsuarioDAO {
 			 System.out.println("NOME: "+c.getNome()+"\nLOGIN: "+c.getLogin()+"\nSENHA: "+c.getSenha()+"\nID: "+c.getId_cliente());
 		 }
 	 }
+
+
+
 
 }

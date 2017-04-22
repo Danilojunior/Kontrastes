@@ -11,8 +11,8 @@ public class Conexao {
 		//Objeto para permitir a conexão
 		Connection con =null;
 		try {
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bancokontraststudio","postgres","postgres");
-			System.out.println("Conectado com sucesso!!!");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BancoKontrastes","postgres","postgres");
+			System.out.println("Conectado com sucesso!");
 		} catch (SQLException e) {
 			
 			System.out.println("Não pode conectar : "+ e.getMessage());

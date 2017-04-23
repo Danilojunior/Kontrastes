@@ -2,12 +2,21 @@ package fafica.pi.projeto.entidades;
 
 import java.sql.Date;
 
-public class AgendarServico {
+public class AgendarAtendimento {
 	
 	private Integer id_agendamento;
 	private Integer id_profissional;
-	private String data;
 	private Integer id_cliente;
+	private String dataAtendimento;
+	private String horarioAtendimento;
+	
+	public String getHorarioAtendimento() {
+		return horarioAtendimento;
+	}
+	public void setHorarioAtendimento(String horarioAtendimento) {
+		this.horarioAtendimento = horarioAtendimento;
+	}
+	
 	public Integer getId_agendamento() {
 		return id_agendamento;
 	}
@@ -21,11 +30,11 @@ public class AgendarServico {
 		this.id_profissional = id_profissional;
 	}
 	
-	public String getData() {
-		return data;
+	public String getDataAtendimento() {
+		return dataAtendimento;
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setDataAtendimento(String dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
 	}
 	public Integer getId_cliente() {
 		return id_cliente;

@@ -93,6 +93,7 @@ public class ClienteDAO {
 	public ArrayList<Cliente> listarTodos(){
 		//Montando a consulta SQL
 		String sql = "select * from cliente";
+		
 		//Constroe o PreparedStatement passando o sql
 		ArrayList<Cliente> lista = new ArrayList<>();
 		try {
@@ -112,7 +113,7 @@ public class ClienteDAO {
 				Cliente cliente = new Cliente();
 				
 				/*Capturando os valores dos resultados
-				 * e os atribuindo para cada objeto*/
+				 * e os atribui para cada objeto*/
 				 
 				cliente.setId_cliente(resultado.getInt("id_cliente"));//Pega o valor da coluna
 				cliente.setNome(resultado.getString("nome"));
@@ -126,10 +127,72 @@ public class ClienteDAO {
 		
 			e.printStackTrace();
 		}
-		return lista;
-		
-		
+		return lista;	
+	}
+	//Primeiro pegamos o ID
+	public Cliente buscaPorID(int id){
+		//Segundo, montamos o SQL
+		String sql= "select * from cliente where id_cliente=?";
+		Cliente cliente=null;
+		try {
+			//Terceiro, preparamos o sql e colocando o ID dentro do SQL
+			PreparedStatement preparador = con.prepareStatement(sql);
+			preparador.setInt(1, id);
+			
+			//Terceiro executar no banco com o comando a seguir
+			//Armazena o resultado da consulta
+			//executeQuery = executar consulta
+			ResultSet resultado = preparador.executeQuery();
+			//Quarto pegamos o resultado e colocamos
+			
+			//Quinto colocar esse resultado em uma variavel do tipocliente
+			//Sexto retornar esse objeto
+			
+			if(resultado.next()){//Se houver um próximo
+				
+				cliente = new Cliente();
+				cliente.setId_cliente(resultado.getInt("id_cliente"));
+				cliente.setNome(resultado.getString("nome"));
+				cliente.setLogin(resultado.getString("login"));
+				cliente.setSenha(resultado.getString("senha"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cliente;
 		
 	}
+	public Cliente autenticar(Cliente cliente){
+		
+		String sql= "select * from cliente where login=? and senha=?";
+		Cliente clienteRetorno=null;
+		try {
+			PreparedStatement preparador = con.prepareStatement(sql);
+			preparador.setString(1, cliente.getLogin());
+			preparador.setString(2, cliente.getSenha());
+			
+			ResultSet resultado = preparador.executeQuery();
+				
+			if(resultado.next()){//Se houver um próximo
+				
+				cliente = new Cliente();
+				cliente.setId_cliente(resultado.getInt("id_cliente"));
+				cliente.setNome(resultado.getString("nome"));
+				cliente.setLogin(resultado.getString("login"));
+				cliente.setSenha(resultado.getString("senha"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cliente;
+		
+	}
+	
+	
+	
 
 }

@@ -5,6 +5,7 @@ public class Profissional {
 	private Integer id_profissional; 
 	private String nome;
 	private String especialidade;
+	
 	public Integer getId_profissional() {
 		return id_profissional;
 	}

@@ -7,56 +7,59 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fafica.pi.projeto.entidades.AgendarServico;
+import fafica.pi.projeto.entidades.AgendarAtendimento;
 
-public class AgendarServicoDao {
+public class AgendarAtendimentoDao {
 	
 	private Connection con = Conexao.getConnection();
 	
-	public void cadastrar(AgendarServico agendarServico){
+	public void cadastrar(AgendarAtendimento agendarAtendimento){
 		
-	String sql="INSERT INTO agendarServico (data) values(?)";
+	String sql="insert into agendarAtendimento(dataAtendimento, horarioAtendimento, id_profissional, id_cliente) values(?,?,?,?)";
 	
 	try {
 		PreparedStatement preparador= con.prepareStatement(sql);
 		
-		preparador.setString(1,agendarServico.getData());
+		preparador.setString(1,agendarAtendimento.getDataAtendimento());
+		preparador.setString(2,agendarAtendimento.getHorarioAtendimento());
+		preparador.setInt(3, agendarAtendimento.getId_profissional());
+		preparador.setInt(4, agendarAtendimento.getId_cliente());
 		
 		preparador.execute();
 		preparador.close();
-		System.out.println("Cadastrado com sucesso");
+		System.out.println("Atendimento agendado com SUCESSO.");
 		
 	} catch (SQLException e) {
-		System.out.println("Não cadastrado"+e.getMessage());
+		e.printStackTrace();
 	}	
 	}
-	public void salvar(AgendarServico agendarServico){
-		if(agendarServico.getId_agendamento()!=null && agendarServico.getId_agendamento()!=0){
-			alterar(agendarServico);
+	public void salvar(AgendarAtendimento agendarAtendimento){
+		if(agendarAtendimento.getId_agendamento()!=null && agendarAtendimento.getId_agendamento()!=0){
+			alterar(agendarAtendimento);
 			
 		}else{
-			cadastrar(agendarServico);
+			cadastrar(agendarAtendimento);
 		}
 	}
-	public void alterar(AgendarServico agendarServico){
+	public void alterar(AgendarAtendimento agendarAtendimento){
 		
-		String sql="UPDATE agendaeServico SET nome=?,login=?,senha=? WHERE id=?";
+		String sql="UPDATE agendarAtendimento SET nome=?,login=?,senha=? WHERE id=?";
 		
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
 			
-			preparador.setInt(1,agendarServico.getId_agendamento());
-			preparador.setInt(2,agendarServico.getId_cliente());
+			preparador.setInt(1,agendarAtendimento.getId_agendamento());
+			preparador.setInt(2,agendarAtendimento.getId_cliente());
 			
 			preparador.execute();
 			preparador.close();
-			System.out.println("Alterador com sucesso");
+			System.out.println("Atendimento alterado com SUCESSO");
 			
 		} catch (SQLException e) {
 			System.out.println("Não alterar "+e.getMessage());
 		}
 	}	
-public void excluir(AgendarServico agendarServico){
+public void excluir(AgendarAtendimento agendarServico){
 		
 		String sql="DELETE FROM agendarServico WHERE id=?";
 		
@@ -73,10 +76,10 @@ public void excluir(AgendarServico agendarServico){
 			System.out.println("Não excluir"+e.getMessage());
 		}
 	}
-public List<AgendarServico>listaTodos(){
+public List<AgendarAtendimento>listaTodos(){
 	
 	String sql="SELECT * FROM agendarServico";
-	List<AgendarServico>lista=new ArrayList<>();		
+	List<AgendarAtendimento>lista=new ArrayList<>();		
 	
 	try {
 		PreparedStatement preparador = con.prepareStatement(sql);		
@@ -84,7 +87,7 @@ public List<AgendarServico>listaTodos(){
 		
 		
 		while(resultado.next()){
-			AgendarServico usu = new AgendarServico();
+			AgendarAtendimento usu = new AgendarAtendimento();
 		usu.setId_agendamento(resultado.getInt("id_agenda"));
 		lista.add(usu);
 		

@@ -13,18 +13,20 @@ public class TesteClienteDAO {
 		// TODO Auto-generated method stub
 
 	      //testeCadastrar();
-		testeAlterar();
+		//testeAlterar();
 		//testeDeletar();
 		//testarListarTodos();
+		//testarAutenticar();
+		testarBuscaPorID();
 		
 	}
 	//Testar metodo cadastrar
 	private static void testeCadastrar() {
 		Cliente cliente= new Cliente();
 		
-		cliente.setNome("Rafinha");
-		cliente.setLogin("RafaRafa");
-		cliente.setSenha("98746567");
+		cliente.setNome("Paulo");
+		cliente.setLogin("PauloCoelho");
+		cliente.setSenha("1212");
 		
 		ClienteDAO usu = new ClienteDAO();
 		
@@ -57,7 +59,27 @@ public class TesteClienteDAO {
 		 //Varrendo e imprimindo a lista
 		 for(Cliente c: listaResultado){
 			 System.out.println("NOME: "+c.getNome()+"\nLOGIN: "+c.getLogin()+"\nSENHA: "+c.getSenha()+"\nID: "+c.getId_cliente());
+			 System.out.println("");
 		 }
+	 }
+	 
+	 public static void testarAutenticar(){
+		 Cliente cliente = new Cliente();
+		 cliente.setLogin("Rafinha");
+		 cliente.setSenha("1234");
+		 
+		 ClienteDAO clienteDAO = new ClienteDAO();
+		 System.out.println(clienteDAO.autenticar(cliente).getNome());
+	 }
+	 
+	 public static void testarBuscaPorID(){
+		 
+		 ClienteDAO clienteDAO = new ClienteDAO();
+		 Cliente cliente = clienteDAO.buscaPorID(2);
+		 if(cliente!=null){
+		 System.out.println("Nome: "+cliente.getNome());
+		 }
+	
 	 }
 
 
